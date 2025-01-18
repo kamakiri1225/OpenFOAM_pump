@@ -1,0 +1,44 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      alpha.liquid;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    //("pumpInTop1|pumpInTop2|pumpInUnder|pumpOutTop|Xmin|Xmax|Ymin|Ymax|Zmin|inletWall|pumpOutUnder|pumpInUnder001")
+    ".*"
+    {
+        type            zeroGradient;
+        //type           constantAlphaContactAngle;
+        //theta0         45;
+        //limit          gradient;
+        //value          uniform 0;
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 1;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 1;
+    }
+    Zmax
+    {
+        type            inletOutlet;
+        inletValue      uniform 0;
+        value           uniform 0;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,78 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    volScalarField;
+	object    omega;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dimensions    [ 0 0 -1 0 0 0 0 ];
+internalField    uniform 6.7082e-05;
+boundaryField
+{
+	#includeEtc    "caseDicts/setConstraintTypes";
+	Zmin_vol_2-4_3
+	{
+		type    omegaWallFunction;
+		blending    binomial2;
+		value    uniform 6.7082e-05;
+	}
+
+	empty2_wall_2-4_3
+	{
+		type    empty;
+	}
+
+	victim_wall_2-4_3
+	{
+		type    omegaWallFunction;
+		blending    binomial2;
+		value    uniform 6.7082e-05;
+	}
+
+	empty1_wall_2-4_3
+	{
+		type    empty;
+	}
+
+	perpetrator_wall_2-4_3
+	{
+		type    omegaWallFunction;
+		blending    binomial2;
+		value    uniform 6.7082e-05;
+	}
+
+	perpetrator_wall_2-6_3
+	{
+		type    omegaWallFunction;
+		blending    binomial2;
+		value    uniform 6.7082e-05;
+	}
+
+	Xmin_press_2-4_3
+	{
+		type    zeroGradient;
+	}
+
+	Ymax_vol_2-4_3
+	{
+		type    turbulentMixingLengthFrequencyInlet;
+		mixingLength    0.01;
+		value    uniform 0.67082;
+	}
+
+	Xmax_press_2-4_3
+	{
+		type    zeroGradient;
+	}
+
+	outelt
+	{
+		type    inletOutlet;
+		inletValue    uniform 0.67082;
+		value    uniform 6.7082e-05;
+	}
+
+}
+

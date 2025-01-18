@@ -1,0 +1,74 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    volScalarField;
+	object    nut;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dimensions    [ 0 2 -1 0 0 0 0 ];
+internalField    uniform 0;
+boundaryField
+{
+	#includeEtc    "caseDicts/setConstraintTypes";
+	Zmin_vol_2-4_3
+	{
+		type    nutkWallFunction;
+		value    uniform 0;
+	}
+
+	empty2_wall_2-4_3
+	{
+		type    empty;
+	}
+
+	victim_wall_2-4_3
+	{
+		type    nutkWallFunction;
+		value    uniform 0;
+	}
+
+	empty1_wall_2-4_3
+	{
+		type    empty;
+	}
+
+	perpetrator_wall_2-4_3
+	{
+		type    nutkWallFunction;
+		value    uniform 0;
+	}
+
+	perpetrator_wall_2-6_3
+	{
+		type    nutkWallFunction;
+		value    uniform 0;
+	}
+
+	Xmin_press_2-4_3
+	{
+		type    calculated;
+		value    uniform 0;
+	}
+
+	Ymax_vol_2-4_3
+	{
+		type    calculated;
+		value    uniform 0;
+	}
+
+	Xmax_press_2-4_3
+	{
+		type    calculated;
+		value    uniform 0;
+	}
+
+	outelt
+	{
+		type    calculated;
+		value    uniform 0;
+	}
+
+}
+

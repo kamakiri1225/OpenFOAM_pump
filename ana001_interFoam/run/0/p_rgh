@@ -1,0 +1,47 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    volScalarField;
+	object    p_rgh;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dimensions    [ 1 -1 -2 0 0 0 0 ];
+internalField    uniform 0;
+boundaryField
+{
+	#includeEtc    "caseDicts/setConstraintTypes";
+    //("pumpInTop1|pumpInTop2|pumpInUnder|pumpOutTop|Xmin|Xmax|Ymin|Ymax|Zmin|inletWall|pumpOutUnder|pumpInUnder001")
+	".*"
+    {
+        type            fixedFluxPressure;
+        value           uniform 0;
+    }
+    inlet
+    {
+        // type            fixedValue;
+        // value           uniform 1
+		type    fixedFluxPressure;
+		value    uniform 0;
+		// type            outletInlet;
+        // outletValue     uniform 0;
+        // value           uniform 0;
+    }
+    outlet
+    {
+		type    fixedFluxPressure;
+		value    uniform 0;
+    }
+    Zmax
+    {
+		type    totalPressure;
+		U    U;
+		phi    phi;
+		psi    none;
+		gamma    1;
+		rho    rho;
+		p0    uniform 0;
+    }
+}
+

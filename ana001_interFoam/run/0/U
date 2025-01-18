@@ -1,0 +1,47 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    volVectorField;
+	object    U;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dimensions    [ 0 1 -1 0 0 0 0 ];
+internalField    uniform (0 0 0);
+boundaryField
+{
+	#includeEtc    "caseDicts/setConstraintTypes";
+    //("pumpInTop1|pumpInTop2|pumpInUnder|pumpOutTop|Xmin|Xmax|Ymin|Ymax|Zmin|inletWall|pumpOutUnder|pumpInUnder001")
+	".*"
+    {
+		type            noSlip;
+    }
+    inlet
+    {
+        // type            fixedValue;
+        // value           uniform 1
+		// type            zeroGradient;
+        // type            outletInlet;
+        // inletValue      uniform (-1.66 0 0); // 流入時の速度ベクトル
+        // outletValue     uniform (0 0 0); // 流出時の速度ベクトル
+        // value           uniform (-1.66 0 0); // 初期値
+        type            flowRateInletVelocity;
+        volumetricFlowRate  0.01666666; // 流入体積流量 (m³/s)
+        value           uniform (0 0 0); // 初期値
+    }
+    outlet
+    {
+        // type            fixedValue;
+        // value           uniform (0 0 0.94);
+        type            flowRateOutletVelocity;
+        volumetricFlowRate  0.01666666; // 流量 (m³/s)
+        value           uniform (0 0 0); // 初期値 (必要に応じて変更)
+    }
+    Zmax
+    {
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+}
+

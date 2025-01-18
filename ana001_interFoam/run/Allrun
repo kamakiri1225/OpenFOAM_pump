@@ -1,0 +1,50 @@
+#!/bin/bash
+#------------------------------------------------
+# Version: v2012
+# FOAM_INST_DIR: 
+# Check switch ----------------------------------
+# isParallel      : 1
+# initCondCellZone: 0
+# isCHT           : 0
+# isRenumber      : 1
+# isCheckMesh     : 0
+# isReconst       : 0
+# isFoamToEnsight : 0
+# isVFRadiation   : 0
+# isLocalBlend    : 0
+# initCondVofIsOn : 0
+# isSetExprFields : 0
+# isOversetMesh   : 0
+# isVibrationShell: 0
+# isExtrudeMesh   : 1
+ # isVolume6DoF   : 0
+#------------------------------------------------
+
+if [ -f Prerun ] ; then
+  echo "found Prerun"
+  chmod +x Prerun
+  ./Prerun
+else
+  echo "not found Prerun"
+fi
+
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# Start OpenFOAM workflow
+
+# changeDictionary
+runApplication changeDictionary -constant -noFunctionObjects
+
+runApplication extrudeMesh -noFunctionObjects
+
+
+
+# decomposePar
+runParallel redistributePar -decompose -noFunctionObjects
+
+# Run
+runParallel renumberMesh -overwrite -noFunctionObjects
+runParallel $(getApplication)
+
+#----- end of Allrun -----#
+

@@ -1,0 +1,37 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    volVectorField;
+	object    U;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dimensions    [ 0 1 -1 0 0 0 0 ];
+internalField    uniform (0 0 0);
+boundaryField
+{
+	#includeEtc    "caseDicts/setConstraintTypes";
+    //("pumpInTop1|pumpInTop2|pumpInUnder|pumpOutTop|Xmin|Xmax|Ymin|Ymax|Zmin|inletWall|pumpOutUnder|pumpInUnder001")
+	".*"
+    {
+		type            noSlip;
+    }
+    inlet
+    {
+        // type            fixedValue;
+        // value           uniform 1
+		type            zeroGradient;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform (0 0 0.94):
+    }
+    Zmax
+    {
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+}
+

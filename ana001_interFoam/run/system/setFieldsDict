@@ -1,0 +1,25 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    dictionary;
+	object    setFieldsDict;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+regions
+(
+	boxToCell
+	{
+		fieldValues    ( volScalarFieldValue alpha.liquid 1.0 );
+		box    (-1000 -1000 -1)(1000 1000 0.15);
+	}
+	cylinderToCell
+	{
+		fieldValues    ( volScalarFieldValue alpha.liquid 1.0 );
+		p1    (0 0 0);    // 円柱の軸の始点
+		p2    (0 0 100);    // 円柱の軸の終点
+		radius 0.05;       // 円柱の半径
+	}
+);
+

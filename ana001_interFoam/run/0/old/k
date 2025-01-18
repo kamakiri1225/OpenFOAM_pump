@@ -1,0 +1,74 @@
+FoamFile
+{
+	version    2.0;
+	format    ascii;
+	class    volScalarField;
+	object    k;
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dimensions    [ 0 2 -2 0 0 0 0 ];
+internalField    uniform 1.35e-13;
+boundaryField
+{
+	#includeEtc    "caseDicts/setConstraintTypes";
+	Zmin_vol_2-4_3
+	{
+		type    kqRWallFunction;
+		value    uniform 1.35e-13;
+	}
+
+	empty2_wall_2-4_3
+	{
+		type    empty;
+	}
+
+	victim_wall_2-4_3
+	{
+		type    kqRWallFunction;
+		value    uniform 1.35e-13;
+	}
+
+	empty1_wall_2-4_3
+	{
+		type    empty;
+	}
+
+	perpetrator_wall_2-4_3
+	{
+		type    kqRWallFunction;
+		value    uniform 1.35e-13;
+	}
+
+	perpetrator_wall_2-6_3
+	{
+		type    kqRWallFunction;
+		value    uniform 1.35e-13;
+	}
+
+	Xmin_press_2-4_3
+	{
+		type    zeroGradient;
+	}
+
+	Ymax_vol_2-4_3
+	{
+		type    turbulentIntensityKineticEnergyInlet;
+		intensity    0.03;
+		value    uniform 1.35e-05;
+	}
+
+	Xmax_press_2-4_3
+	{
+		type    zeroGradient;
+	}
+
+	outelt
+	{
+		type    inletOutlet;
+		inletValue    uniform 1.35e-05;
+		value    uniform 1.35e-13;
+	}
+
+}
+
