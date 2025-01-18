@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                |
+| \\      /  F ield         | cfMesh: A library for mesh generation          | 
+|  \\    /   O peration     |                                                |
+|   \\  /    A nd           | Author: Franjo Juretic                         | 
+|    \\/     M anipulation  | E-mail: franjo.juretic@c-fields.com            |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version   2.0;
+    format    ascii;
+    class     dictionary;
+    location  "system";
+    object    meshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile "model_m.stl";
+
+maxCellSize 0.03;
+
+//boundaryCellSize 0.01;
+
+objectRefinements
+{
+  refinement1
+  {
+    additionalRefinementLevels 2;
+    type box;
+    centre (0 0 0);
+    lengthX 100;
+    lengthY 100;
+    lengthZ 0.46;
+  }
+}
+
+localRefinement
+{
+    pumpInTop2
+    {
+        cellSize 0.005;
+    }
+    pumpInTop1
+    {
+        cellSize 0.005;
+    }
+    pumpBottom
+    {
+        cellSize 0.005;
+    }
+    pumpOutTop
+    {
+        cellSize 0.005;
+    }
+    pumpOutUnder
+    {
+        cellSize 0.005;
+    }
+    pumpInUnder
+    {
+        cellSize 0.005;
+    }
+    outlet
+    {
+        cellSize 0.005;
+    }
+    inlet
+    {
+        cellSize 0.005;
+    }
+    inletWall
+    {
+        cellSize 0.005;
+    }
+    // "(Ymax|Ymin_Xmax|Xmin|Zmin|Zmax)"
+    // {
+    //     cellSize 0.01;
+    // }
+}
+
+boundaryLayers
+{
+    nLayers 5; // 境界層の挿入
+    thicknessRatio 1.1; // (全5層, 拡大比1.1, 第1層最大厚0.5m)
+    maxFirstLayerThickness 0.0025;
+    patchBoundaryLayers
+    {
+        "pump.*" //正規表現で指定可能
+        {
+            nLayers 5;
+            thicknessRatio 1.1;
+            maxFirstLayerThickness 0.002;
+            /*
+               “allowDiscontinuty”は異なるパッチ面で境界層の層数や拡大率の影響が出ないようにする(1)
+                境界層同士が滑らかに接続するようにする(0)
+            */
+            allowDiscontinuity 0; 
+        }      
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,119 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2312                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       dictionary;
+    location    "constant/polyMesh";
+    object      meshMetaDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile     "model_m.stl";
+
+surfaceMeta
+{
+    nPoints         13669;
+    nFacets         27334;
+    nPatches        15;
+    nFeatureEdges   0;
+    patches
+    {
+        pumpInTop2
+        {
+            type            empty;
+            nFacets         459;
+        }
+        pumpInTop1
+        {
+            type            empty;
+            nFacets         459;
+        }
+        outlet
+        {
+            type            empty;
+            nFacets         227;
+        }
+        pumpBottom
+        {
+            type            empty;
+            nFacets         551;
+        }
+        pumpOutTop
+        {
+            type            empty;
+            nFacets         458;
+        }
+        Zmax
+        {
+            type            empty;
+            nFacets         233;
+        }
+        Xmin
+        {
+            type            empty;
+            nFacets         2;
+        }
+        Ymax
+        {
+            type            empty;
+            nFacets         2;
+        }
+        Ymin
+        {
+            type            empty;
+            nFacets         2;
+        }
+        inlet
+        {
+            type            empty;
+            nFacets         2;
+        }
+        Zmin
+        {
+            type            empty;
+            nFacets         2;
+        }
+        pumpOutUnder
+        {
+            type            empty;
+            nFacets         12559;
+        }
+        pumpInUnder
+        {
+            type            empty;
+            nFacets         551;
+        }
+        Xmax
+        {
+            type            empty;
+            nFacets         8;
+        }
+        inletWall
+        {
+            type            empty;
+            nFacets         8;
+        }
+        pumpInUnder001
+        {
+            type            empty;
+            nFacets         12362;
+        }
+    }
+    pointSubsets
+    {
+    }
+    facetSubsets
+    {
+    }
+    featureEdgeSubsets
+    {
+    }
+}
